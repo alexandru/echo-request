@@ -27,6 +27,10 @@ class EchoService[F[_]: Effect] extends Http4sDsl[F] {
         StaticFile.fromResource(s"/public/$path", Some(request))
           .getOrElseF(NotFound())
 
+      case request @ GET -> Root / "favicon.ico" =>
+        StaticFile.fromResource("/public/favicon.ico", Some(request))
+          .getOrElseF(NotFound())
+
       case request @ GET -> Root / "all" =>
         getAll(request)
 
