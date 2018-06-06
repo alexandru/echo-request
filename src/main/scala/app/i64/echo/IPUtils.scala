@@ -3,7 +3,7 @@ package app.i64.echo
 import java.net.InetAddress
 
 import com.maxmind.geoip2.DatabaseReader
-import com.maxmind.geoip2.record.{City, Country, Location}
+import com.maxmind.geoip2.record._
 import io.circe.Json
 import org.http4s.Request
 import org.http4s.util.CaseInsensitiveString
@@ -68,7 +68,26 @@ object IPUtils {
       if (ref != null)
         Json.obj(
           "latitude" -> Json.fromDoubleOrNull(ref.getLatitude),
-          "longitude" -> Json.fromDoubleOrNull(ref.getLongitude)
+          "longitude" -> Json.fromDoubleOrNull(ref.getLongitude),
+          "timezone" -> Option(ref.getTimeZone).fold(Json.Null)(Json.fromString),
+          "accuracyRadius" -> Option(ref.getAccuracyRadius).fold(Json.Null)(i => Json.fromInt(i.intValue()))
+        )
+      else
+        Json.Null
+
+    def postal(ref: Postal) =
+      if (ref != null && ref.getCode != null)
+        Json.obj(
+          "code" -> Json.fromString(ref.getCode)
+        )
+      else
+        Json.Null
+
+    def continent(ref: Continent) =
+      if (ref != null && ref.getCode != null)
+        Json.obj(
+          "code" -> Json.fromString(ref.getCode),
+          "name" -> Option(ref.getName).fold(Json.Null)(Json.fromString)
         )
       else
         Json.Null
@@ -84,8 +103,10 @@ object IPUtils {
           "country" -> country(info.getCountry),
           "registeredCountry" -> country(info.getRegisteredCountry),
           "representedCountry" -> country(info.getRepresentedCountry),
+          "continent" -> continent(info.getContinent),
           "city" -> city(info.getCity),
-          "location" -> location(info.getLocation)
+          "location" -> location(info.getLocation),
+          "postal" -> postal(info.getPostal)
         )
       }
     } catch {

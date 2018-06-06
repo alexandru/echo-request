@@ -57,7 +57,7 @@ class EchoService[F[_]: Effect] extends Http4sDsl[F] {
         "forwardedFor" -> getHeader(request, "X-Forwarded-For").asJson,
         "via" -> getHeader(request, "Via").asJson,
         "agent" -> getHeader(request, "User-Agent").asJson,
-        "geoIP2" -> ip.map(getGeoIPInfo).getOrElse(Json.Null)
+        "geoip" -> ip.map(getGeoIPInfo).getOrElse(Json.Null)
       ),
       "headers" -> Json.obj(headers: _*)
     ))
