@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Echo HTTP</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Suez+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+      html, body {
+        width: 840px;
+        margin: auto;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      html {
+        background-color: #eee;
+        height: 100%;
+      }
+
+      body {
+        position: absolute;
+        background-color: #fff;
+        padding: 20px;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+      }
+
+      h1, h2 {
+        font-family: 'Suez One', serif;
+      }
+
+      h1 {
+        font-size: 240%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 160%;
+        margin: 20px 0;
+        color: #444;
+      }
+
+      p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      pre {
+        display: block;
+        font-family: 'Courier New', 'Courier', monospace;
+        border: 1px dotted #999;
+        background-color: #fffaee;
+        margin: 20px 0;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      span.command {
+        color: #993300;
+        font-weight: bold;
+      }
+
+      div.notes {
+        color: #666;
+        font-size: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Echo HTTP</h1>
+
+    <p>
+      Web service publicly available for mirroring HTTP requests:
+    </p>
+
+    <!---->
+
+    <h2>1. Show My Request Headers</h2>
+
+    <pre><span class="command">GET</span> <a href="https://echo.i64.app/all" target="_blank">https://echo.i64.app/all</a></pre>
+
+    This also accepts an "ip" parameter, for overriding your IP:
+
+    <pre><span class="command">GET</span> <a href="https://echo.i64.app/all?ip=185.210.218.104" target="_blank">https://echo.i64.app/all?ip=185.210.218.104</a></pre>
+
+    Test via cURL:
+
+    <pre>curl 'https://echo.i64.app/all' -H 'Host: echo.i64.app' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0) Gecko/20100101 Firefox/60.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Cache-Control: max-age=0'</pre>
+
+    <!---->
+
+    <h2>2. Show My IP</h2>
+
+    <pre><span class="command">GET</span> <a href="https://echo.i64.app/ip" target="_blank">https://echo.i64.app/ip</a></pre>
+
+    Test via cURL:
+
+    <pre>curl 'https://echo.i64.app/ip' -H 'Host: echo.i64.app'</pre>
+
+    <!---->
+
+    <h2>3. Geo IP</h2>
+
+    <pre><span class="command">GET</span> <a href="https://echo.i64.app/geoip" target="_blank">https://echo.i64.app/geoip</a></pre>
+
+    This also accepts an "ip" parameter, for overriding your IP:
+
+    <pre><span class="command">GET</span> <a href="https://echo.i64.app/geoip?ip=185.210.218.104" target="_blank">https://echo.i64.app/geoip?ip=185.210.218.104</a></pre>
+
+    Test via cURL:
+
+    <pre>curl 'https://echo.i64.app/geoip' -H 'Host: echo.i64.app'</pre>
+
+    <!---->
+
+    <h2>Notes</h2>
+
+    <div class="notes">
+      <p>
+        Project was built out of personal necessity.
+        If you'd like to inspect the source code or fork it, see:
+        <br><br>
+        <a href="https://github.com/alexandru/echo-request" target="_blank">
+          github.com/alexandru/echo-request
+        </a>
+      </p>
+
+      <p>
+        Privacy Policy: no data is collected on these requests, nothing
+        is stored, the code repository mentioned above gets deployed as
+        is on Heroku.
+      </p>
+    </div>
+
+    <a class="github-fork-ribbon" href="https://github.com/alexandru/echo-request"
+       data-ribbon="Fork me on GitHub"
+       title="Fork me on GitHub"
+       target="_blank">Fork me on GitHub</a>
+  </body>
+</html>
