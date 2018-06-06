@@ -80,6 +80,7 @@ object IPUtils {
       else {
         val info = geoIP.city(address)
         Json.obj(
+          "ip" -> Json.fromString(ip),
           "country" -> country(info.getCountry),
           "registeredCountry" -> country(info.getRegisteredCountry),
           "representedCountry" -> country(info.getRepresentedCountry),
