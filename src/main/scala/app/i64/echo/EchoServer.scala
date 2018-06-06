@@ -18,7 +18,7 @@ object ServerStream {
 
   def stream[F[_]: Effect](implicit ec: ExecutionContext) =
     BlazeBuilder[F]
-      .bindHttp(8080, "0.0.0.0")
+      .bindHttp(80, "0.0.0.0")
       .mountService(helloWorldService, "/")
       .serve
 }
