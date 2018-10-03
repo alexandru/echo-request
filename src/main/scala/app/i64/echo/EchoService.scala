@@ -8,6 +8,7 @@ import io.circe.{Json, Printer}
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
+import org.http4s.server.middleware._
 import org.slf4j.{Logger, LoggerFactory}
 import scala.concurrent.duration._
 
@@ -21,7 +22,7 @@ class EchoService[F[_]: Effect](implicit timer: Timer[F])
 
   import circe._
 
-  val service: HttpService[F] =
+  val routes: HttpService[F] =
     HttpService[F] {
       case request @ GET -> Root =>
         StaticFile.fromResource("/public/index.html", Some(request))
@@ -48,6 +49,9 @@ class EchoService[F[_]: Effect](implicit timer: Timer[F])
         val timespan = FiniteDuration(d, unit)
         simulateTimeout(timespan)
     }
+
+  val service: HttpService[F] =
+    CORS(routes)
 
   def getAll(request: Request[F]): F[Response[F]] = {
     val ip = request.params.get("ip") match {
