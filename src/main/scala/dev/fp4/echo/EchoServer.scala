@@ -1,4 +1,4 @@
-package app.i64.echo
+package dev.fp4.echo
 
 import cats.effect.{Effect, IO, Timer}
 import fs2.StreamApp

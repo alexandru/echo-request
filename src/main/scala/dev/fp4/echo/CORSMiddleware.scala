@@ -1,4 +1,4 @@
-package app.i64.echo
+package dev.fp4.echo
 
 import org.http4s._
 import org.http4s.util.CaseInsensitiveString
@@ -6,7 +6,7 @@ import cats.effect._
 import cats.data.Kleisli
 
 object CORSMiddleware {
-  /** 
+  /**
     * An HTTP middleware that adds CORS headers to requests.
     */
   def apply[F[_]](service: HttpService[F], header: Header)
@@ -26,5 +26,5 @@ object CORSMiddleware {
         )
       }
     }
-  }   
+  }
 }

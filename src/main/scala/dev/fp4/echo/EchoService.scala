@@ -1,4 +1,4 @@
-package app.i64.echo
+package dev.fp4.echo
 
 import cats.implicits._
 import cats.effect.Effect
@@ -89,7 +89,7 @@ class EchoService[F[_]: Effect](implicit timer: Timer[F])
     Ok(ip.map(getGeoIPInfo).getOrElse(Json.Null))
   }
 
-  def simulateTimeout(ts: FiniteDuration): F[Response[F]] = {    
+  def simulateTimeout(ts: FiniteDuration): F[Response[F]] = {
     for {
       start <- timer.clockMonotonic(MILLISECONDS)
       _ <- timer.sleep(ts)

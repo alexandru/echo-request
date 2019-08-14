@@ -1,4 +1,4 @@
-package app.i64.echo
+package dev.fp4.echo
 
 import java.net.InetAddress
 
