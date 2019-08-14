@@ -1,5 +1,4 @@
-val Http4sVersion = "0.18.12"
-val Specs2Version = "4.2.0"
+val Http4sVersion = "0.20.9"
 val LogbackVersion = "1.2.3"
 val GeoIP2Version = "2.12.0"
 
@@ -7,8 +6,8 @@ lazy val root = (project in file("."))
   .settings(
     organization := "app.i64",
     name := "echo",
-    version := "0.0.1",
-    scalaVersion := "2.12.4",
+    version := "0.2.0",
+    scalaVersion := "2.12.8",
     scalacOptions += "-deprecation",
     libraryDependencies ++= Seq(
       "org.http4s"        %% "http4s-blaze-server" % Http4sVersion,
@@ -18,6 +17,8 @@ lazy val root = (project in file("."))
       "ch.qos.logback"     % "logback-classic"     % LogbackVersion,
       "com.maxmind.geoip2" % "geoip2" % GeoIP2Version
     ),
+
+    addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3"),
 
     // For Heroku deployment
     herokuAppName in Compile := "echorequest"
