@@ -1,4 +1,4 @@
-val Http4sVersion = "0.20.9"
+val Http4sVersion = "0.18.24"
 val LogbackVersion = "1.2.3"
 val GeoIP2Version = "2.12.0"
 
